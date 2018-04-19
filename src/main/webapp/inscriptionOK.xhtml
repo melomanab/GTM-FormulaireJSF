@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<!-- ==== Librairies f: h: JSF + composant PRIMEFACES ==== -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Incription OK</title>
+
+
+</h:head>
+
+
+<h:body>
+
+inscription OK
+Vous êtes bien rajouté à la liste dinscrits
+
+		<!-- ==== Table JSF ==== -->
+		<h:dataTable value="#{clientbean.listeClients}" var="item"
+				styleClass="order-table" headerClass="order-table-header"
+				rowClasses="order-table-odd-row,order-table-even-row">
+				
+				<h:column>
+					<!-- column header -->
+					<f:facet name="header">Prénom</f:facet>
+					<!-- row record -->
+					<h:outputText value="#{item.prenom}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Nom</f:facet>
+					<h:outputText value="#{item.nom}" />
+				</h:column>
+
+				
+			</h:dataTable>
+		
+
+
+
+
+</h:body>
+</html>
