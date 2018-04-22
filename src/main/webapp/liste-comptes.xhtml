@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<!-- ==== Librairies f: h: JSF + UI + composant BOOTFACES ==== -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+
+	<title>Incription OK</title>
+
+	<!--Intégration du fichier CSS dans la page-->
+	<h:outputStylesheet library="css" name="table-style.css" />
+
+</h:head>
+
+
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+			<b:jumbotron>
+				<b:container>
+					<p>Liste de comptes</p>
+				</b:container>
+			</b:jumbotron>
+
+
+
+			<!-- ==== Formulaire JSF (besoin pour imbriquer h:commandLink) ==== -->
+			<h:form>
+
+				<!-- ==== Table JSF ==== -->
+				<h:dataTable value="#{comptebean.allComptes}" var="item"
+					styleClass="order-table" headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row">
+
+					<h:column>
+						<f:facet name="header">Id Compte</f:facet>
+						<h:outputText value="#{item.idCompte}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Numero de Compte</f:facet>
+						<h:outputText value="#{item.numCompte}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Solde </f:facet>
+						<h:outputText value="#{item.solde}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">idClient </f:facet>
+						<h:outputText value="#{item.idClient}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Type de compte </f:facet>
+						<h:outputText value="#{item.typeDeCompte}" />
+					</h:column>
+				</h:dataTable>
+
+			</h:form>
+
+			<!-- ==== Button: Retour à l'accueil ==== -->
+			<h:form>
+				<h:panelGroup style="display:block; text-align:center">
+					<h:commandButton value="Retour à la liste de clients"
+						action="liste-clients.xhtml" />
+				</h:panelGroup>
+			</h:form>
+
+
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

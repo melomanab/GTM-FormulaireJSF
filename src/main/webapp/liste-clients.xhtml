@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<!-- ==== Librairies f: h: JSF + UI + composant BOOTFACES ==== -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+
+	<title>Incription OK</title>
+
+	<!--Intégration du fichier CSS dans la page-->
+	<h:outputStylesheet library="css" name="table-style.css" />
+
+</h:head>
+
+
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+			<b:jumbotron>
+				<b:container>
+					<p>Liste de clients</p>
+				</b:container>
+			</b:jumbotron>
+
+
+
+			<!-- ==== Formulaire JSF (besoin pour imbriquer h:commandLink) ==== -->
+			<h:form>
+				<!-- ==== Table JSF ==== -->
+				<h:dataTable value="#{clientbean.listeClients}" var="item"
+					styleClass="order-table" headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row">
+
+					<h:column>
+						<!-- column header -->
+						<f:facet name="header">Prénom</f:facet>
+						<!-- row record -->
+						<h:outputText value="#{item.prenom}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Nom</f:facet>
+						<h:outputText value="#{item.nom}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Age</f:facet>
+						<h:outputText value="#{item.age}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">IdConseiller</f:facet>
+						<h:outputText value="#{item.idConseiller}" />
+					</h:column>
+
+					<!-- ==== Lien: Modifier client ==== -->
+					<h:column>
+						<f:facet name="header"></f:facet>
+						<h:commandLink value="Liste comptes"
+							action="#{comptebean.actionListeComptesClient}" />
+					</h:column>
+					
+					<!-- ==== Lien: Modifier client ==== -->
+					<h:column>
+						<f:facet name="header"></f:facet>
+						<h:commandLink value="Modifier"
+							action="#{clientbean.actionCharger(item)}" />
+
+
+					</h:column>
+					<!-- ==== Lien: supprimer client ==== -->
+					<h:column>
+						<f:facet name="header"></f:facet>
+						<h:commandLink value="Supprimer"
+							action="#{clientbean.actionSupprimer(item)}" />
+					</h:column>
+				</h:dataTable>
+
+			</h:form>
+
+			<!-- ==== Button: nouvelle inscription ==== -->
+
+			<h:panelGroup style="display:block; text-align:center">
+				<h:form>
+					<f:facet name="header"></f:facet>
+					<h:commandButton value="Ajouter un nouveau client"
+						action="formulaire.xhtml" />
+				</h:form>
+			</h:panelGroup>
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

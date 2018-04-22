@@ -23,7 +23,7 @@
 		<ui:define name="content">
 			<b:jumbotron>
 				<b:container>
-					<p>Incription validée</p>
+					<p>Confirmation des données saisies</p>
 				</b:container>
 			</b:jumbotron>
 			
@@ -34,7 +34,7 @@
 					cellspacing="100">
 
 
-<h:outputLabel value="Nom : " />
+					<h:outputLabel value="Nom : " />
 					<h:outputText value="#{clientbean.client.nom}" 
 						id="nom" />
 					<h:message for="nom" 
@@ -56,18 +56,27 @@
 					<h:message for="idConseiller" style="color:red" />
 
 
+
 				</h:panelGrid>
 
 			</h:form>
 			
 
 
-
-			<!-- ==== Button: Retour à l'accueil ==== -->
+			<!-- ==== Button: Confirmation ==== -->
 			<h:form>
 				<h:panelGroup style="display:block; text-align:center">
-					<h:commandButton value="Retour à la liste de clients"
-						action="liste-clients.xhtml" />
+					<h:commandButton value="Confirmer"
+						action="#{clientbean.actionInscription}"/>
+				</h:panelGroup>
+				
+				
+
+			
+			<!-- ==== Button: Modifier ==== -->
+				<h:panelGroup style="display:block; text-align:center">
+					<h:commandButton value="Modifier"
+						action="formulaire.xhtml" />
 				</h:panelGroup>
 			</h:form>
 

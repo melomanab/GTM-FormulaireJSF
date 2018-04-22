@@ -19,14 +19,15 @@ public class ClientBean {
 	// 1. Declaration de classe domaine.Client comme proprietée du beans
 	// et instatiation immediate à celle du bean
 	private Client client = new Client();
-	
-	private List<Client> listeClients;
 
 	private ClientService serviceC;
-/*
+	
+/* ATTENTION: Gestion de properietés avec @ManagedProperty ne marche pas 
 	// Propritées managées de la classe client
 	@ManagedProperty(name="nom", value = "PIGNON")
 	public String nom; 
+
+
 	@ManagedProperty(name="prenom", value = "PIGNON")
 	public String prenom; 
 */	
@@ -56,29 +57,29 @@ public class ClientBean {
 		this.client = client;
 	}
 
-	public List<Client> getListeClients() {		
-		// 1. Instantiation service
-		//ClientService serviceC = new ClientService();
-	
-		// 2. Appel services depuis le bean
-		// ----- GETALL 
-		List<Client> list = this.serviceC.getListeClients();
-		
-		this.listeClients = list;
-				
-		return this.listeClients;
+	// Getter/Setter listeClients
+	public List<Client> getListeClients() {				
+		return this.serviceC.getListeClients();
 	}
-	//////////// Methodes ////////////////
-	public Object inscriptionClient() {
+	
+	//////////// Methodes 'action' ////////////////
+	public Object actionInscription() {
 
 		// la Signature (retour Object) est documentée dans doc JSF commandButton /
 		// attribut action
 
 		// 1. Instantiation service
 
-		// 2. Appel services depuis le bean
+		// 2. TODO appel service createNewClient depuis le bean
 		// ----- INSERT a partir de formulaire
-		boolean insert = this.serviceC.createNewClient(this.client);
+		Client nouveauClient = new Client (this.client.getNom(), 
+				this.client.getPrenom(),
+				this.client.getAge(), this.client.getIdConseiller());
+		
+		this.serviceC.getListeClients().add(nouveauClient);
+		
+		boolean insert = true;
+		// boolean insert = this.serviceC.createNewClient(nouveauClient);
 
 		if (insert) {
 			return "inscriptionOK";
@@ -86,8 +87,31 @@ public class ClientBean {
 		return "inscriptionKO";
 	}
 	
+	public void actionSupprimer(Client item) {
 
+		this.serviceC.getListeClients().remove(item);
+	
+	}
+	
+	public Object actionCharger(Client item) {
+		
+		// Modification etat courant du bean à l'item chosi 
+		this.client = item;
+		return "formulaireModification";
+	}
+	
+	public Object actionModifier(Client item) {
 
+		// Modification etat courant de l'item choisi à celui du bean
+		item.setNom(this.client.getNom());
+	
+//		this.client.getAge();
+//		this.client.getIdConseiller());
+		return "modificationOK";
+		
+	
+	}
+	
 	
 
 }

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+<h:head>
+	<title>Project Name</title>
+	<meta name="author" content="The Author"></meta>
+</h:head>
+
+
+
+<!-- Add 50px padding top to the body for the navbar -->
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+			<b:jumbotron>
+				<b:container>
+					<p>Formulaire de modification</p>
+				</b:container>
+			</b:jumbotron>
+
+			<!-- ==== Formulaire JSF ==== -->
+			<h:form>
+
+				<h:panelGrid id="panel" columns="3" cellpadding="200"
+					cellspacing="100">
+
+
+					<h:outputLabel value="Nom : " />
+					<h:inputText value="#{clientbean.client.nom}" required="true"
+						id="nom" styleClass="inputtext" />
+					<h:message for="nom" style="color:red" />
+
+					<h:outputLabel value="Prénom : " />
+					<h:inputText value="#{clientbean.client.prenom}" required="true"
+						id="prenom" styleClass="inputtext" />
+					<h:message for="prenom" style="color:red" />
+
+					<h:outputLabel value="Age : " />
+					<h:inputText value="#{clientbean.client.age}" id="age"
+						styleClass="inputtext" />
+					<h:message for="age" style="color:red" />
+
+					<h:outputLabel value="idConseiller : " />
+					<h:inputText value="#{clientbean.client.idConseiller}"
+						id="idConseiller" styleClass="inputtext" />
+					<h:message for="idConseiller" style="color:red" />
+
+
+					<!-- ==== Inscription ==== -->
+					<h:panelGroup style="display:block; text-align:center">
+						<h:commandButton value="Valider les modifications" 
+						action="#{clientbean.actionModifier(clientbean.client)}"
+						 />
+					</h:panelGroup>
+
+				</h:panelGrid>
+
+			</h:form>
+
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -23,11 +23,32 @@
 		<ui:define name="content">
 			<b:jumbotron>
 				<b:container>
-					<p>Incription KO</p>
+					<p>Modification validée</p>
 				</b:container>
 			</b:jumbotron>
 			
-		
+				<!-- ==== Formulaire JSF ==== -->
+			<h:form>
+
+				<h:panelGrid id="panel" columns="3" cellpadding="200"
+					cellspacing="100">
+
+
+					<h:outputLabel value="Nom : " />
+					<h:outputText value="#{clientbean.client.nom}" 
+						id="nom" />
+					<h:message for="nom" 
+					style ="color:red"/>
+
+
+
+				</h:panelGrid>
+
+			</h:form>
+			
+
+
+
 			<!-- ==== Button: Retour à l'accueil ==== -->
 			<h:form>
 				<h:panelGroup style="display:block; text-align:center">
